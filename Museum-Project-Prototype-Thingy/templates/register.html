@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="hero">
+        <form method="post" action="" novalidate>
+            {{ form.csrf_token }}
+            {% for fieldname in form if fieldname != form.csrf_token %}
+                <div>
+                    {{ fieldname.label() }}
+                    {{ fieldname(size=20)}}
+
+                
+                {%if fieldname.errors or exists %}
+                    <ul>
+                        {% for error in fieldname.errors %}
+                        <li>
+                            {{ error }}
+                        </li>
+                        {% endfor %}
+                
+                        {% if exists[0] == fieldname.label.text.lower() %}
+                            <li>
+                                An account with this {{ exists[0] }} already exists. Please try a different {{ exists[0] }}.
+                            </li>
+                        {% elif exists[1] == fieldname.label.text.lower() %}
+                            <li>
+                                An account with this {{ exists[1] }} already exists. Please try a different {{ exists[1] }}.
+                            </li>
+                        {% elif exists[2] == fieldname.label.text.lower() %}
+                            <li>
+                                An account with this {{ exists[2] }} already exists. Please try a different {{ exists[2] }}.
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+
+                </div>
+            {% endfor %}
+            
+            <p>
+                <input type="submit" value="add">
+            </p>
+
+        </form>
+    </div>
+
+
+
+
+{% endblock %}

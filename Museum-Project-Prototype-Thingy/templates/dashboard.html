@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="hero dashboard">
+        <div class="dashboard-buttons">
+            <a class="dashboard-button" href="{{ url_for('calendar') }}">View Calendar</a>
+            <a class="dashboard-button" href="{{ url_for('multi_booking') }}">Add Bookings</a>
+        </div>
+    </div>
+{% endblock %}

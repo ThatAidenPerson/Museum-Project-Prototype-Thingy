@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="hero">
+        <form method="post" action="" novalidate>
+            {{ form.csrf_token }}
+            <h2> Welcome {{ user_data['first_name'] }}</h2>
+            <div class="edit-details">
+                <div class="form-stage">
+                    {% for item, fieldname in form_items if item != 'hash' and fieldname != form.csrf_token %}
+                        <p>{{ item.title() }}: {{ user_data[item] }}</p>
+                        <div class="form-item">
+                            <p>Edit:</p>
+                            {{ fieldname(size=20) }}
+                        </div>
+                        {%if fieldname.errors or exists %}
+                            <ul>
+                            {% for error in fieldname.errors %}
+                                <li>
+                                {{ error }}
+                                </li>
+                            {% endfor %}
+                    
+                            {% if exists[0] == fieldname.label.text.lower() %}
+                                <li>
+                                    An account with this {{ exists[0] }} already exists. Please try a different {{ exists[0] }}.
+                                </li>
+                            {% elif exists[1] == fieldname.label.text.lower() %}
+                                <li>
+                                    An account with this {{ exists[1] }} already exists. Please try a different {{ exists[1] }}.
+                                </li>
+                            {% elif exists[2] == fieldname.label.text.lower() %}
+                                <li>
+                                    An account with this {{ exists[2] }} already exists. Please try a different {{ exists[2] }}.
+                                </li>
+                            {% endif %}
+                                </ul>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <input type="submit" value="Save Changes" class="submit-btn">
+            </div>
+        </form>
+        <div>
+            <a href="{{ url_for('logout') }}">Log Out</a>
+            <a href="{{ url_for('delete_user') }}">Delete Account (This Cannot Be Undone!)</a>
+        </div>
+    </div>
+
+
+
+{% endblock %}

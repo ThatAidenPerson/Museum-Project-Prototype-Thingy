@@ -1,0 +1,210 @@
+:root {
+    --teal: #1796a8;
+    --burgundy: #a13a56;
+    --sand: #d7bfa6;
+    --white: #fff;
+    --grey-bg: #c9c9c9;
+    --grey: #7a7a7a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: Arial, sans-serif;
+    background-color: var(--grey-bg);
+    overflow: hidden; 
+}
+
+.masthead-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--grey);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    padding: 0 10px;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.nav-logo {
+    color: var(--grey-bg);
+    text-decoration: none;
+    padding: 17px;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.nav-button {
+    background-color: var(--grey-bg);
+    color: var(--grey);
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    transition: background 0.3s;
+    margin-left: 10px;
+}
+
+.nav-button:hover {
+    background-color: var(--teal);
+    color: var(--white);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+}
+
+.stage-hero {
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero {
+    width: 90%;
+    max-width: 1200px;
+    max-height: 100%;
+    background-color: var(--white);
+    opacity: 0.97;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(23, 150, 168, 0.08);
+    overflow: auto;
+    border: 2px solid var(--sand);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero.dashboard {
+    width: 90%;
+    max-width: 500px;
+    margin: 2em auto;
+    border: 2px solid var(--burgundy);
+}
+
+.calendar-container {
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--sand);
+    border-radius: 5px;
+    background-color: var(--teal);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.calendar-container table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background-color: var(--white);
+}
+
+.calendar-container th,
+.calendar-container td {
+    border: 1px solid var(--sand);
+    padding: 0.5em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.calendar-container th {
+    background-color: var(--sand);
+    color: var(--burgundy);
+}
+
+.day-number {
+    margin-bottom: 0.3em;
+    font-size: 1em;
+    color: var(--burgundy);
+}
+
+.event {
+    margin: 0.3em 0;
+    padding: 0.3em;
+    border: 1px solid var(--burgundy);
+    border-radius: 3px;
+    background-color: var(--grey-bg);
+    font-size: 0.9em;
+    color: var(--teal);
+}
+
+.calendar-links {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.calendar-links a {
+    color: var(--burgundy);
+    text-decoration: underline;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.calendar-links a:hover {
+    color: var(--teal);
+}
+
+.dashboard-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 20px 0;
+}
+
+.dashboard-button {
+    padding: 20px 40px;
+    font-size: 1.5em;
+    background-color: var(--teal);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 10px;
+    border: 2px solid var(--burgundy);
+    transition: background 0.3s, color 0.3s;
+}
+
+.dashboard-button:hover {
+    background-color: var(--burgundy);
+    color: var(--white);
+    border-color: var(--sand);
+}
+
+.hero form {
+    width: 100%;
+}
+
+@media (max-width: 900px), (max-height: 700px) {
+    html, body {
+        overflow: auto;
+    }
+    .stage-hero {
+        height: auto;
+        min-height: calc(100vh - 50px);
+        overflow: visible;
+        align-items: flex-start;
+    }
+    .hero {
+        max-height: none;
+        overflow: visible;
+    }
+}
+

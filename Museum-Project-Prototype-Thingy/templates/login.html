@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="hero">
+        <form method="post" action="" novalidate>
+            {{ form.csrf_token }}
+            
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+
+            {% for fieldname in form if fieldname != form.csrf_token %}
+                <div>
+                    {{ fieldname.label() }}
+                    {{ fieldname(size=20)}}
+                {% if fieldname.errors %}
+
+                    <ul>
+                        {% for error in fieldname.errors %}
+                        <li>
+                            {{ error }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </div>
+            {% endfor %}
+            
+            <p>
+                <input type="submit" value="login">
+            </p>
+
+        </form>
+    </div>
+
+
+
+
+{% endblock %}

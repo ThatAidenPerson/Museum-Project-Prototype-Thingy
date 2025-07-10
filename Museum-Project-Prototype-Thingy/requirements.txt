@@ -1,0 +1,55 @@
+contact details (form 1):
+
+hirer details:
+Name
+company name
+address
+email address
+phone number
+
+invoice details (optional if the same as hirer + form 2):
+Name
+address
+email address
+phone number
+
+Designated evactionation person (form 3):
+
+Name (optional)
+email or phone number (optional)
+
+One off booking (form 4):
+
+Date
+Start time
+End time
+Selection of room (Teign Room, Roof Terrace, etc.)
+£18 per hour
+is this an extra booking from a recurring booking? (yes/no) (still £15 per hour) 
+Type of booking (meeting, lecture, workshop, performance, class, other)
+Notes/needed equipment (projector, sound system, etc.)
+
+Recurring booking (form 5):
+
+Date
+Start time
+End time
+Recurring pattern (weekly, monthly, etc.) (optional)
+End date of the recurring booking (if applicable) (optional)
+Selection of room (Teign Room, Roof Terrace, etc.)
+£15 per hour
+Type of booking (meeting, lecture, workshop, performance, class, other)
+Notes/needed equipment (projector, sound system, etc.)
+
+Unavailable dates (form 6):
+
+Date
+Start time
+End time
+recurring pattern (weekly, monthly, etc.) (optional)
+End date of the recurring unavailability (if applicable)
+Reason for unavailability (maintenance, event, etc.)
+
+
+
+

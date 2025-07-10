@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="hero">
+        <h2>Calendar</h2>
+        <div class="calendar-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {# Loop over days 1 to 31 #}
+                    {% for day in range(1, 32) %}
+                        {% if loop.first or (day - 1) % 7 == 0 %}
+                            <tr>
+                        {% endif %}
+                        <td>
+                            <div class="day-number"><strong>{{ day }}</strong></div>
+                            <div class="events">
+                                {% for booking in calendar_data %}
+                                    {# One-off bookings #}
+                                    {% if booking.one_off_booking and booking.one_date != "N/A" %}
+                                        {% set booking_day = booking.one_date.split('-')[2]|int %}
+                                        {% if booking_day == day %}
+                                            <div class="event">
+                                                <div class="event-name">{{ booking.hire_name }}</div>
+                                                <div class="event-room">{{ booking.one_room }}</div>
+                                                <div class="event-time">{{ booking.one_start }} - {{ booking.one_end }}</div>
+                                                <form action="" method="post">{#{ url_for('delete_booking', booking_id=loop.index0) }#}
+                                                    <button type="submit">Delete Booking</button>
+                                                </form>
+                                            </div>
+                                        {% endif %}
+                                    {# Recurring bookings (weekly) #}
+                                    {% elif not booking.one_off_booking and booking.reacurring_date != "N/A" and booking.reacurring_pattern == "weekly" and booking.reacurring_end_date != "N/A" %}
+                                        {% set start_day = booking.reacurring_date.split('-')[2]|int %}
+                                        {% set end_day = booking.reacurring_end_date.split('-')[2]|int %}
+                                        {# Check if the current day is within the recurring window and appears on a weekly interval #}
+                                        {% if day >= start_day and day <= end_day and ((day - start_day) % 7 == 0) %}
+                                            <div class="event">
+                                                <div class="event-name">{{ booking.hire_name }}</div>
+                                                <div class="event-room">{{ booking.reacurring_room }}</div>
+                                                <div class="event-time">{{ booking.reacurring_start }} - {{ booking.reacurring_end }}</div>
+                                                <form action="" method="post"> {#{ url_for('delete_booking', booking_id=loop.index0) }#}
+                                                    <button type="submit">Delete Booking</button>
+                                                </form>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </td>
+                        {% if day % 7 == 0 %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    {# Close the final row if needed #}
+                    {% if 31 % 7 != 0 %}
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div class="calendar-links">
+            <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+            <a href="{{ url_for('multi_booking') }}">Add Bookings</a>
+        </div>
+    </div>
+{% endblock %}
